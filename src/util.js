@@ -25,6 +25,10 @@ export const sortData = (data) => {
   return sortedData.sort((a, b) => b.cases - a.cases);
 };
 
+export const prettyPrintStat = (stat) =>
+  stat ? `+${numeral(stat).format("0.0a")}` : "+0";
+
+
 // DRAW circles on the map with interactive tooltop
 export const showDataOnMap = (data, casesType = "cases") => {
   return data.map((country) => (
