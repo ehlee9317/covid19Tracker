@@ -9,25 +9,29 @@ import {
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import "./App.css";
-import Table from "./Table"
-import { sortData } from "./util"
-import LineGraph from "./LineGraph"
+import Table from "./Table";
+import { sortData } from "./util";
+import LineGraph from "./LineGraph";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.50746, lng: -40.4796});
+  const [mapZoom, setMapZoom] = useState(3)
+
   // [] = code inside here will run once when the component loads and not again after
   // [countries] = code inside will run once when the component loads and run again whenever countries changes
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
-    .then(response => response.json())
-    .then(data => {
-      setCountryInfo(data)
-    })
-  }, [])
+      .then((response) => response.json())
+      .then((data) => {
+        setCountryInfo(data);
+      });
+  }, []);
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -39,7 +43,7 @@ function App() {
             value: country.countryInfo.iso2,
           }));
 
-          const sortedData = sortData(data)
+          const sortedData = sortData(data);
           setTableData(sortedData);
           setCountries(countries);
         });
@@ -103,15 +107,16 @@ function App() {
           />
         </div>
         {/* Map */}
-        <Map />
+        <Map
+            center={mapCenter}
+            zoom={mapZoom}
+        />
       </div>
 
       <Card className="app__right">
         <CardContent>
-          {/* Table */}
           <h3>Live Cases by Country</h3>
-          <Table countries={tableData}/>
-          {/* Graph */}
+          <Table countries={tableData} />
           <h3>Worldwide New Cases</h3>
           <LineGraph />
         </CardContent>
