@@ -10,12 +10,12 @@ const casesTypeColors = {
 
   recovered: {
     hex: "#7DD71D",
-    mulitiplier: 1200,
+    mulitiplier: 250,
   },
 
   deaths: {
     hex: "#C0C0C0",
-    mulitiplier: 2000,
+    mulitiplier: 1500,
   },
 };
 
