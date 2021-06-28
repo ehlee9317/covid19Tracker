@@ -23,8 +23,14 @@ body {
   justify-content: space-between;
 }
 
+.app__header > h1 {
+  color: #b52323;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
 .app__left {
-  flex: 0.8;
+  flex: 0.9;
 }
 
 .app__stats {
